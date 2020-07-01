@@ -1,6 +1,6 @@
 <?php
 /**
- * ProductsApiTest
+ * ProductActiveStatusApiTest
  * PHP version 5
  *
  * @category Class
@@ -32,14 +32,14 @@ use EzzeSiftuz\ProductsV1\ApiException;
 use EzzeSiftuz\ProductsV1\ObjectSerializer;
 
 /**
- * ProductsApiTest Class Doc Comment
+ * ProductActiveStatusApiTest Class Doc Comment
  *
  * @category Class
  * @package  EzzeSiftuz\ProductsV1
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ProductsApiTest extends \PHPUnit_Framework_TestCase
+class ProductActiveStatusApiTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -71,32 +71,32 @@ class ProductsApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for createOrUpdateProductVariations
+     * Test case for getActiveStatus
      *
-     * Create or update your product variations and get a process-id to query results. The limit for the number of product variations in one request is 500..
+     * Read the active status of your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting active status values will be paginated. The default page length is 100 active status entries per response, also the page size limit. The links specified in the result can be used to page through the total result space. Replaces corresponding online-status endpoint which now is marked as deprecated..
      *
      */
-    public function testCreateOrUpdateProductVariations()
+    public function testGetActiveStatus()
     {
     }
 
     /**
-     * Test case for getPartnerProducts
+     * Test case for getVariationActiveStatus
      *
-     * Read your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting product variations will be paginated. The default page length is 100 product variations per response, also the page size limit. The links specified in the result can be used to page through the total result space..
+     * Read the active status of a single product variation. Replaces corresponding online-status endpoint which now is marked as deprecated..
      *
      */
-    public function testGetPartnerProducts()
+    public function testGetVariationActiveStatus()
     {
     }
 
     /**
-     * Test case for getProductVariation
+     * Test case for updateActiveStatus
      *
-     * Read a single product variation..
+     * Update the active status of your product variations and get a process-id to query results. Replaces corresponding online-status endpoint which now is marked as deprecated..
      *
      */
-    public function testGetProductVariation()
+    public function testUpdateActiveStatus()
     {
     }
 }

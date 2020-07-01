@@ -1,6 +1,6 @@
 <?php
 /**
- * OnlineStatusListResponse
+ * ProductProcessResultLink
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \EzzeSiftuz\ProductsV1\ObjectSerializer;
 
 /**
- * OnlineStatusListResponse Class Doc Comment
+ * ProductProcessResultLink Class Doc Comment
  *
  * @category Class
  * @package  EzzeSiftuz\ProductsV1
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class OnlineStatusListResponse implements ModelInterface, ArrayAccess
+class ProductProcessResultLink implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'OnlineStatusList_Response';
+    protected static $swaggerModelName = 'ProductProcessResultLink';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,8 +56,8 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'status' => '\EzzeSiftuz\ProductsV1\Model\ActiveStatus[]',
-'links' => '\EzzeSiftuz\ProductsV1\Model\Link[]'    ];
+        'rel' => 'string',
+'href' => 'string'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -65,8 +65,8 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'status' => null,
-'links' => null    ];
+        'rel' => null,
+'href' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -95,8 +95,8 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status',
-'links' => 'links'    ];
+        'rel' => 'rel',
+'href' => 'href'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -104,8 +104,8 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus',
-'links' => 'setLinks'    ];
+        'rel' => 'setRel',
+'href' => 'setHref'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -113,8 +113,8 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus',
-'links' => 'getLinks'    ];
+        'rel' => 'getRel',
+'href' => 'getHref'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -157,7 +157,22 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
+    const REL_SELF = 'self';
+const REL_FAILED = 'failed';
+const REL_SUCCEEDED = 'succeeded';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRelAllowableValues()
+    {
+        return [
+            self::REL_SELF,
+self::REL_FAILED,
+self::REL_SUCCEEDED,        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -174,8 +189,8 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['links'] = isset($data['links']) ? $data['links'] : null;
+        $this->container['rel'] = isset($data['rel']) ? $data['rel'] : null;
+        $this->container['href'] = isset($data['href']) ? $data['href'] : null;
     }
 
     /**
@@ -186,6 +201,14 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getRelAllowableValues();
+        if (!is_null($this->container['rel']) && !in_array($this->container['rel'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'rel', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -203,49 +226,58 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets status
+     * Gets rel
      *
-     * @return \EzzeSiftuz\ProductsV1\Model\ActiveStatus[]
+     * @return string
      */
-    public function getStatus()
+    public function getRel()
     {
-        return $this->container['status'];
+        return $this->container['rel'];
     }
 
     /**
-     * Sets status
+     * Sets rel
      *
-     * @param \EzzeSiftuz\ProductsV1\Model\ActiveStatus[] $status status
+     * @param string $rel link relation type
      *
      * @return $this
      */
-    public function setStatus($status)
+    public function setRel($rel)
     {
-        $this->container['status'] = $status;
+        $allowedValues = $this->getRelAllowableValues();
+        if (!is_null($rel) && !in_array($rel, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'rel', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['rel'] = $rel;
 
         return $this;
     }
 
     /**
-     * Gets links
+     * Gets href
      *
-     * @return \EzzeSiftuz\ProductsV1\Model\Link[]
+     * @return string
      */
-    public function getLinks()
+    public function getHref()
     {
-        return $this->container['links'];
+        return $this->container['href'];
     }
 
     /**
-     * Sets links
+     * Sets href
      *
-     * @param \EzzeSiftuz\ProductsV1\Model\Link[] $links a list of links that can be used for pagination (among others).
+     * @param string $href the linked reference as URI
      *
      * @return $this
      */
-    public function setLinks($links)
+    public function setHref($href)
     {
-        $this->container['links'] = $links;
+        $this->container['href'] = $href;
 
         return $this;
     }

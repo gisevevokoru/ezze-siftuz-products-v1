@@ -1,6 +1,6 @@
 <?php
 /**
- * OnlineStatusListResponse
+ * ActiveStatusListRequest
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \EzzeSiftuz\ProductsV1\ObjectSerializer;
 
 /**
- * OnlineStatusListResponse Class Doc Comment
+ * ActiveStatusListRequest Class Doc Comment
  *
  * @category Class
  * @package  EzzeSiftuz\ProductsV1
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class OnlineStatusListResponse implements ModelInterface, ArrayAccess
+class ActiveStatusListRequest implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'OnlineStatusList_Response';
+    protected static $swaggerModelName = 'ActiveStatusList_Request';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,8 +56,7 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'status' => '\EzzeSiftuz\ProductsV1\Model\ActiveStatus[]',
-'links' => '\EzzeSiftuz\ProductsV1\Model\Link[]'    ];
+        'status' => '\EzzeSiftuz\ProductsV1\Model\ActiveStatus[]'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -65,8 +64,7 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'status' => null,
-'links' => null    ];
+        'status' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -95,8 +93,7 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status',
-'links' => 'links'    ];
+        'status' => 'status'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -104,8 +101,7 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus',
-'links' => 'setLinks'    ];
+        'status' => 'setStatus'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -113,8 +109,7 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus',
-'links' => 'getLinks'    ];
+        'status' => 'getStatus'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -175,7 +170,6 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['links'] = isset($data['links']) ? $data['links'] : null;
     }
 
     /**
@@ -222,30 +216,6 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
     public function setStatus($status)
     {
         $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets links
-     *
-     * @return \EzzeSiftuz\ProductsV1\Model\Link[]
-     */
-    public function getLinks()
-    {
-        return $this->container['links'];
-    }
-
-    /**
-     * Sets links
-     *
-     * @param \EzzeSiftuz\ProductsV1\Model\Link[] $links a list of links that can be used for pagination (among others).
-     *
-     * @return $this
-     */
-    public function setLinks($links)
-    {
-        $this->container['links'] = $links;
 
         return $this;
     }

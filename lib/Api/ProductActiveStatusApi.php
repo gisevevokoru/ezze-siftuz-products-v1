@@ -1,6 +1,6 @@
 <?php
 /**
- * ProductsApi
+ * ProductActiveStatusApi
  * PHP version 5
  *
  * @category Class
@@ -39,14 +39,14 @@ use EzzeSiftuz\ProductsV1\HeaderSelector;
 use EzzeSiftuz\ProductsV1\ObjectSerializer;
 
 /**
- * ProductsApi Class Doc Comment
+ * ProductActiveStatusApi Class Doc Comment
  *
  * @category Class
  * @package  EzzeSiftuz\ProductsV1
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ProductsApi
+class ProductActiveStatusApi
 {
     /**
      * @var ClientInterface
@@ -87,305 +87,45 @@ class ProductsApi
     }
 
     /**
-     * Operation createOrUpdateProductVariations
+     * Operation getActiveStatus
      *
-     * Create or update your product variations and get a process-id to query results. The limit for the number of product variations in one request is 500.
-     *
-     * @param  \EzzeSiftuz\ProductsV1\Model\ProductVariation[] $body body (optional)
-     * @param  \DateTime $x_request_timestamp Holds the client side update request timestamp (optional)
-     *
-     * @throws \EzzeSiftuz\ProductsV1\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \EzzeSiftuz\ProductsV1\Model\ProductProcessProgress
-     */
-    public function createOrUpdateProductVariations($body = null, $x_request_timestamp = null)
-    {
-        list($response) = $this->createOrUpdateProductVariationsWithHttpInfo($body, $x_request_timestamp);
-        return $response;
-    }
-
-    /**
-     * Operation createOrUpdateProductVariationsWithHttpInfo
-     *
-     * Create or update your product variations and get a process-id to query results. The limit for the number of product variations in one request is 500.
-     *
-     * @param  \EzzeSiftuz\ProductsV1\Model\ProductVariation[] $body (optional)
-     * @param  \DateTime $x_request_timestamp Holds the client side update request timestamp (optional)
-     *
-     * @throws \EzzeSiftuz\ProductsV1\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \EzzeSiftuz\ProductsV1\Model\ProductProcessProgress, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function createOrUpdateProductVariationsWithHttpInfo($body = null, $x_request_timestamp = null)
-    {
-        $returnType = '\EzzeSiftuz\ProductsV1\Model\ProductProcessProgress';
-        $request = $this->createOrUpdateProductVariationsRequest($body, $x_request_timestamp);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\EzzeSiftuz\ProductsV1\Model\ProductProcessProgress',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation createOrUpdateProductVariationsAsync
-     *
-     * Create or update your product variations and get a process-id to query results. The limit for the number of product variations in one request is 500.
-     *
-     * @param  \EzzeSiftuz\ProductsV1\Model\ProductVariation[] $body (optional)
-     * @param  \DateTime $x_request_timestamp Holds the client side update request timestamp (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createOrUpdateProductVariationsAsync($body = null, $x_request_timestamp = null)
-    {
-        return $this->createOrUpdateProductVariationsAsyncWithHttpInfo($body, $x_request_timestamp)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createOrUpdateProductVariationsAsyncWithHttpInfo
-     *
-     * Create or update your product variations and get a process-id to query results. The limit for the number of product variations in one request is 500.
-     *
-     * @param  \EzzeSiftuz\ProductsV1\Model\ProductVariation[] $body (optional)
-     * @param  \DateTime $x_request_timestamp Holds the client side update request timestamp (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createOrUpdateProductVariationsAsyncWithHttpInfo($body = null, $x_request_timestamp = null)
-    {
-        $returnType = '\EzzeSiftuz\ProductsV1\Model\ProductProcessProgress';
-        $request = $this->createOrUpdateProductVariationsRequest($body, $x_request_timestamp);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'createOrUpdateProductVariations'
-     *
-     * @param  \EzzeSiftuz\ProductsV1\Model\ProductVariation[] $body (optional)
-     * @param  \DateTime $x_request_timestamp Holds the client side update request timestamp (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function createOrUpdateProductVariationsRequest($body = null, $x_request_timestamp = null)
-    {
-
-        $resourcePath = '/v1/products';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // header params
-        if ($x_request_timestamp !== null) {
-            $headerParams['X-Request-Timestamp'] = ObjectSerializer::toHeaderValue($x_request_timestamp);
-        }
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            // \stdClass has no __toString(), so we should encode it manually
-            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($httpBody);
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getPartnerProducts
-     *
-     * Read your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting product variations will be paginated. The default page length is 100 product variations per response, also the page size limit. The links specified in the result can be used to page through the total result space.
+     * Read the active status of your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting active status values will be paginated. The default page length is 100 active status entries per response, also the page size limit. The links specified in the result can be used to page through the total result space. Replaces corresponding online-status endpoint which now is marked as deprecated.
      *
      * @param  string $product_name search for product variations by their productName value (optional)
      * @param  string $category search for product variations by their category value (optional)
      * @param  string $brand search for product variations by their brand value (optional)
      * @param  int $page page (optional)
-     * @param  int $limit proposed limit for the number of products per response page (at most 100) (optional)
+     * @param  int $limit proposed limit for the number of active status values per response page (at most 100) (optional)
      *
      * @throws \EzzeSiftuz\ProductsV1\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \EzzeSiftuz\ProductsV1\Model\ProductVariationApiResult
+     * @return \EzzeSiftuz\ProductsV1\Model\OnlineStatusListResponse
      */
-    public function getPartnerProducts($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
+    public function getActiveStatus($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
     {
-        list($response) = $this->getPartnerProductsWithHttpInfo($product_name, $category, $brand, $page, $limit);
+        list($response) = $this->getActiveStatusWithHttpInfo($product_name, $category, $brand, $page, $limit);
         return $response;
     }
 
     /**
-     * Operation getPartnerProductsWithHttpInfo
+     * Operation getActiveStatusWithHttpInfo
      *
-     * Read your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting product variations will be paginated. The default page length is 100 product variations per response, also the page size limit. The links specified in the result can be used to page through the total result space.
+     * Read the active status of your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting active status values will be paginated. The default page length is 100 active status entries per response, also the page size limit. The links specified in the result can be used to page through the total result space. Replaces corresponding online-status endpoint which now is marked as deprecated.
      *
      * @param  string $product_name search for product variations by their productName value (optional)
      * @param  string $category search for product variations by their category value (optional)
      * @param  string $brand search for product variations by their brand value (optional)
      * @param  int $page (optional)
-     * @param  int $limit proposed limit for the number of products per response page (at most 100) (optional)
+     * @param  int $limit proposed limit for the number of active status values per response page (at most 100) (optional)
      *
      * @throws \EzzeSiftuz\ProductsV1\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \EzzeSiftuz\ProductsV1\Model\ProductVariationApiResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \EzzeSiftuz\ProductsV1\Model\OnlineStatusListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPartnerProductsWithHttpInfo($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
+    public function getActiveStatusWithHttpInfo($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
     {
-        $returnType = '\EzzeSiftuz\ProductsV1\Model\ProductVariationApiResult';
-        $request = $this->getPartnerProductsRequest($product_name, $category, $brand, $page, $limit);
+        $returnType = '\EzzeSiftuz\ProductsV1\Model\OnlineStatusListResponse';
+        $request = $this->getActiveStatusRequest($product_name, $category, $brand, $page, $limit);
 
         try {
             $options = $this->createHttpClientOption();
@@ -436,7 +176,7 @@ class ProductsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\EzzeSiftuz\ProductsV1\Model\ProductVariationApiResult',
+                        '\EzzeSiftuz\ProductsV1\Model\OnlineStatusListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -447,22 +187,22 @@ class ProductsApi
     }
 
     /**
-     * Operation getPartnerProductsAsync
+     * Operation getActiveStatusAsync
      *
-     * Read your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting product variations will be paginated. The default page length is 100 product variations per response, also the page size limit. The links specified in the result can be used to page through the total result space.
+     * Read the active status of your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting active status values will be paginated. The default page length is 100 active status entries per response, also the page size limit. The links specified in the result can be used to page through the total result space. Replaces corresponding online-status endpoint which now is marked as deprecated.
      *
      * @param  string $product_name search for product variations by their productName value (optional)
      * @param  string $category search for product variations by their category value (optional)
      * @param  string $brand search for product variations by their brand value (optional)
      * @param  int $page (optional)
-     * @param  int $limit proposed limit for the number of products per response page (at most 100) (optional)
+     * @param  int $limit proposed limit for the number of active status values per response page (at most 100) (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPartnerProductsAsync($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
+    public function getActiveStatusAsync($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
     {
-        return $this->getPartnerProductsAsyncWithHttpInfo($product_name, $category, $brand, $page, $limit)
+        return $this->getActiveStatusAsyncWithHttpInfo($product_name, $category, $brand, $page, $limit)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -471,23 +211,23 @@ class ProductsApi
     }
 
     /**
-     * Operation getPartnerProductsAsyncWithHttpInfo
+     * Operation getActiveStatusAsyncWithHttpInfo
      *
-     * Read your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting product variations will be paginated. The default page length is 100 product variations per response, also the page size limit. The links specified in the result can be used to page through the total result space.
+     * Read the active status of your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting active status values will be paginated. The default page length is 100 active status entries per response, also the page size limit. The links specified in the result can be used to page through the total result space. Replaces corresponding online-status endpoint which now is marked as deprecated.
      *
      * @param  string $product_name search for product variations by their productName value (optional)
      * @param  string $category search for product variations by their category value (optional)
      * @param  string $brand search for product variations by their brand value (optional)
      * @param  int $page (optional)
-     * @param  int $limit proposed limit for the number of products per response page (at most 100) (optional)
+     * @param  int $limit proposed limit for the number of active status values per response page (at most 100) (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPartnerProductsAsyncWithHttpInfo($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
+    public function getActiveStatusAsyncWithHttpInfo($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
     {
-        $returnType = '\EzzeSiftuz\ProductsV1\Model\ProductVariationApiResult';
-        $request = $this->getPartnerProductsRequest($product_name, $category, $brand, $page, $limit);
+        $returnType = '\EzzeSiftuz\ProductsV1\Model\OnlineStatusListResponse';
+        $request = $this->getActiveStatusRequest($product_name, $category, $brand, $page, $limit);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -527,21 +267,21 @@ class ProductsApi
     }
 
     /**
-     * Create request for operation 'getPartnerProducts'
+     * Create request for operation 'getActiveStatus'
      *
      * @param  string $product_name search for product variations by their productName value (optional)
      * @param  string $category search for product variations by their category value (optional)
      * @param  string $brand search for product variations by their brand value (optional)
      * @param  int $page (optional)
-     * @param  int $limit proposed limit for the number of products per response page (at most 100) (optional)
+     * @param  int $limit proposed limit for the number of active status values per response page (at most 100) (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getPartnerProductsRequest($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
+    protected function getActiveStatusRequest($product_name = null, $category = null, $brand = null, $page = null, $limit = null)
     {
 
-        $resourcePath = '/v1/products';
+        $resourcePath = '/v1/products/active-status';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -635,37 +375,37 @@ class ProductsApi
     }
 
     /**
-     * Operation getProductVariation
+     * Operation getVariationActiveStatus
      *
-     * Read a single product variation.
+     * Read the active status of a single product variation. Replaces corresponding online-status endpoint which now is marked as deprecated.
      *
      * @param  string $sku search for a product variation by its SKU value (required)
      *
      * @throws \EzzeSiftuz\ProductsV1\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \EzzeSiftuz\ProductsV1\Model\ProductVariation
+     * @return \EzzeSiftuz\ProductsV1\Model\ActiveStatus
      */
-    public function getProductVariation($sku)
+    public function getVariationActiveStatus($sku)
     {
-        list($response) = $this->getProductVariationWithHttpInfo($sku);
+        list($response) = $this->getVariationActiveStatusWithHttpInfo($sku);
         return $response;
     }
 
     /**
-     * Operation getProductVariationWithHttpInfo
+     * Operation getVariationActiveStatusWithHttpInfo
      *
-     * Read a single product variation.
+     * Read the active status of a single product variation. Replaces corresponding online-status endpoint which now is marked as deprecated.
      *
      * @param  string $sku search for a product variation by its SKU value (required)
      *
      * @throws \EzzeSiftuz\ProductsV1\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \EzzeSiftuz\ProductsV1\Model\ProductVariation, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \EzzeSiftuz\ProductsV1\Model\ActiveStatus, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getProductVariationWithHttpInfo($sku)
+    public function getVariationActiveStatusWithHttpInfo($sku)
     {
-        $returnType = '\EzzeSiftuz\ProductsV1\Model\ProductVariation';
-        $request = $this->getProductVariationRequest($sku);
+        $returnType = '\EzzeSiftuz\ProductsV1\Model\ActiveStatus';
+        $request = $this->getVariationActiveStatusRequest($sku);
 
         try {
             $options = $this->createHttpClientOption();
@@ -716,7 +456,7 @@ class ProductsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\EzzeSiftuz\ProductsV1\Model\ProductVariation',
+                        '\EzzeSiftuz\ProductsV1\Model\ActiveStatus',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -727,18 +467,18 @@ class ProductsApi
     }
 
     /**
-     * Operation getProductVariationAsync
+     * Operation getVariationActiveStatusAsync
      *
-     * Read a single product variation.
+     * Read the active status of a single product variation. Replaces corresponding online-status endpoint which now is marked as deprecated.
      *
      * @param  string $sku search for a product variation by its SKU value (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProductVariationAsync($sku)
+    public function getVariationActiveStatusAsync($sku)
     {
-        return $this->getProductVariationAsyncWithHttpInfo($sku)
+        return $this->getVariationActiveStatusAsyncWithHttpInfo($sku)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -747,19 +487,19 @@ class ProductsApi
     }
 
     /**
-     * Operation getProductVariationAsyncWithHttpInfo
+     * Operation getVariationActiveStatusAsyncWithHttpInfo
      *
-     * Read a single product variation.
+     * Read the active status of a single product variation. Replaces corresponding online-status endpoint which now is marked as deprecated.
      *
      * @param  string $sku search for a product variation by its SKU value (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProductVariationAsyncWithHttpInfo($sku)
+    public function getVariationActiveStatusAsyncWithHttpInfo($sku)
     {
-        $returnType = '\EzzeSiftuz\ProductsV1\Model\ProductVariation';
-        $request = $this->getProductVariationRequest($sku);
+        $returnType = '\EzzeSiftuz\ProductsV1\Model\ActiveStatus';
+        $request = $this->getVariationActiveStatusRequest($sku);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -799,23 +539,23 @@ class ProductsApi
     }
 
     /**
-     * Create request for operation 'getProductVariation'
+     * Create request for operation 'getVariationActiveStatus'
      *
      * @param  string $sku search for a product variation by its SKU value (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getProductVariationRequest($sku)
+    protected function getVariationActiveStatusRequest($sku)
     {
         // verify the required parameter 'sku' is set
         if ($sku === null || (is_array($sku) && count($sku) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sku when calling getProductVariation'
+                'Missing the required parameter $sku when calling getVariationActiveStatus'
             );
         }
 
-        $resourcePath = '/v1/products/{sku}';
+        $resourcePath = '/v1/products/{sku}/active-status';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -890,6 +630,266 @@ class ProductsApi
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateActiveStatus
+     *
+     * Update the active status of your product variations and get a process-id to query results. Replaces corresponding online-status endpoint which now is marked as deprecated.
+     *
+     * @param  \EzzeSiftuz\ProductsV1\Model\ActiveStatusListRequest $body body (optional)
+     * @param  string $x_request_timestamp Holds the optional client side update request timestamp, in ISO DateTime format (optional)
+     *
+     * @throws \EzzeSiftuz\ProductsV1\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \EzzeSiftuz\ProductsV1\Model\ProductProcessProgress
+     */
+    public function updateActiveStatus($body = null, $x_request_timestamp = null)
+    {
+        list($response) = $this->updateActiveStatusWithHttpInfo($body, $x_request_timestamp);
+        return $response;
+    }
+
+    /**
+     * Operation updateActiveStatusWithHttpInfo
+     *
+     * Update the active status of your product variations and get a process-id to query results. Replaces corresponding online-status endpoint which now is marked as deprecated.
+     *
+     * @param  \EzzeSiftuz\ProductsV1\Model\ActiveStatusListRequest $body (optional)
+     * @param  string $x_request_timestamp Holds the optional client side update request timestamp, in ISO DateTime format (optional)
+     *
+     * @throws \EzzeSiftuz\ProductsV1\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \EzzeSiftuz\ProductsV1\Model\ProductProcessProgress, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateActiveStatusWithHttpInfo($body = null, $x_request_timestamp = null)
+    {
+        $returnType = '\EzzeSiftuz\ProductsV1\Model\ProductProcessProgress';
+        $request = $this->updateActiveStatusRequest($body, $x_request_timestamp);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\EzzeSiftuz\ProductsV1\Model\ProductProcessProgress',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateActiveStatusAsync
+     *
+     * Update the active status of your product variations and get a process-id to query results. Replaces corresponding online-status endpoint which now is marked as deprecated.
+     *
+     * @param  \EzzeSiftuz\ProductsV1\Model\ActiveStatusListRequest $body (optional)
+     * @param  string $x_request_timestamp Holds the optional client side update request timestamp, in ISO DateTime format (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateActiveStatusAsync($body = null, $x_request_timestamp = null)
+    {
+        return $this->updateActiveStatusAsyncWithHttpInfo($body, $x_request_timestamp)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateActiveStatusAsyncWithHttpInfo
+     *
+     * Update the active status of your product variations and get a process-id to query results. Replaces corresponding online-status endpoint which now is marked as deprecated.
+     *
+     * @param  \EzzeSiftuz\ProductsV1\Model\ActiveStatusListRequest $body (optional)
+     * @param  string $x_request_timestamp Holds the optional client side update request timestamp, in ISO DateTime format (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateActiveStatusAsyncWithHttpInfo($body = null, $x_request_timestamp = null)
+    {
+        $returnType = '\EzzeSiftuz\ProductsV1\Model\ProductProcessProgress';
+        $request = $this->updateActiveStatusRequest($body, $x_request_timestamp);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateActiveStatus'
+     *
+     * @param  \EzzeSiftuz\ProductsV1\Model\ActiveStatusListRequest $body (optional)
+     * @param  string $x_request_timestamp Holds the optional client side update request timestamp, in ISO DateTime format (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function updateActiveStatusRequest($body = null, $x_request_timestamp = null)
+    {
+
+        $resourcePath = '/v1/products/active-status';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // header params
+        if ($x_request_timestamp !== null) {
+            $headerParams['X-Request-Timestamp'] = ObjectSerializer::toHeaderValue($x_request_timestamp);
+        }
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

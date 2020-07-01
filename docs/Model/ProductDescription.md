@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **fsc_certified** | **bool** | If the product variant is certified by the Forest Stewardship Council: &#x27;true&#x27;; otherwise &#x27;false&#x27; | [optional] 
 **disposal** | **bool** | If true, otto.de will present information about the disposal of the product (or parts of it). | [optional] 
 **product_url** | **string** | Refers to a representation of the product variant in a shop of the partner. Should be a valid URL. | [optional] 
-**description** | **string** | Represents a textual description of a product variant. May contain HTML elements. May contain a minimum of 300 and a maximum of 2000 characters. Relevant for SEO. | [optional] 
-**bullet_points** | **string[]** | Lists some key information about a product variant a partner can provide. At least one bullet point must be provided. May contain a minimum of 3 and a maximum of 60 characters. | [optional] 
+**description** | **string** | Represents a textual description of a product variant. May contain HTML elements. May contain a maximum of 2000 characters. Relevant for SEO. | [optional] 
+**bullet_points** | **string[]** | Lists some key information about a product variant a partner can provide. At least one bullet point must be provided. Up to five bullet points can be specified. May contain a minimum of 3 and a maximum of 60 characters. | [optional] 
 **attributes** | [**\EzzeSiftuz\ProductsV1\Model\Attribute[]**](Attribute.md) | Lists all the descriptive information about a product variant a partner can provide. Must be provided in the form of a key values pair. Will be validated against the AttributeDefinitions from Category endpoint provided by Otto market. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

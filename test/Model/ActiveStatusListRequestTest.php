@@ -1,6 +1,6 @@
 <?php
 /**
- * MarketPlaceStatusErrorTest
+ * ActiveStatusListRequestTest
  *
  * PHP version 5
  *
@@ -29,15 +29,15 @@
 namespace EzzeSiftuz\ProductsV1;
 
 /**
- * MarketPlaceStatusErrorTest Class Doc Comment
+ * ActiveStatusListRequestTest Class Doc Comment
  *
  * @category    Class
- * @description MarketPlaceStatusError
+ * @description ActiveStatusListRequest
  * @package     EzzeSiftuz\ProductsV1
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class MarketPlaceStatusErrorTest extends \PHPUnit_Framework_TestCase
+class ActiveStatusListRequestTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -69,23 +69,16 @@ class MarketPlaceStatusErrorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "MarketPlaceStatusError"
+     * Test "ActiveStatusListRequest"
      */
-    public function testMarketPlaceStatusError()
+    public function testActiveStatusListRequest()
     {
     }
 
     /**
-     * Test attribute "code"
+     * Test attribute "status"
      */
-    public function testPropertyCode()
-    {
-    }
-
-    /**
-     * Test attribute "title"
-     */
-    public function testPropertyTitle()
+    public function testPropertyStatus()
     {
     }
 }

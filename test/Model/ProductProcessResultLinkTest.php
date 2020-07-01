@@ -1,6 +1,6 @@
 <?php
 /**
- * MarketPlaceStatusErrorTest
+ * ProductProcessResultLinkTest
  *
  * PHP version 5
  *
@@ -29,15 +29,15 @@
 namespace EzzeSiftuz\ProductsV1;
 
 /**
- * MarketPlaceStatusErrorTest Class Doc Comment
+ * ProductProcessResultLinkTest Class Doc Comment
  *
  * @category    Class
- * @description MarketPlaceStatusError
+ * @description ProductProcessResultLink
  * @package     EzzeSiftuz\ProductsV1
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class MarketPlaceStatusErrorTest extends \PHPUnit_Framework_TestCase
+class ProductProcessResultLinkTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -69,23 +69,23 @@ class MarketPlaceStatusErrorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "MarketPlaceStatusError"
+     * Test "ProductProcessResultLink"
      */
-    public function testMarketPlaceStatusError()
+    public function testProductProcessResultLink()
     {
     }
 
     /**
-     * Test attribute "code"
+     * Test attribute "rel"
      */
-    public function testPropertyCode()
+    public function testPropertyRel()
     {
     }
 
     /**
-     * Test attribute "title"
+     * Test attribute "href"
      */
-    public function testPropertyTitle()
+    public function testPropertyHref()
     {
     }
 }

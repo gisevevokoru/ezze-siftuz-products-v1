@@ -1,6 +1,6 @@
 <?php
 /**
- * OnlineStatusListResponse
+ * ActiveStatus
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \EzzeSiftuz\ProductsV1\ObjectSerializer;
 
 /**
- * OnlineStatusListResponse Class Doc Comment
+ * ActiveStatus Class Doc Comment
  *
  * @category Class
  * @package  EzzeSiftuz\ProductsV1
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class OnlineStatusListResponse implements ModelInterface, ArrayAccess
+class ActiveStatus implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'OnlineStatusList_Response';
+    protected static $swaggerModelName = 'ActiveStatus';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,8 +56,9 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'status' => '\EzzeSiftuz\ProductsV1\Model\ActiveStatus[]',
-'links' => '\EzzeSiftuz\ProductsV1\Model\Link[]'    ];
+        'sku' => 'string',
+'active' => 'bool',
+'last_modified' => 'string'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -65,8 +66,9 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'status' => null,
-'links' => null    ];
+        'sku' => null,
+'active' => null,
+'last_modified' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -95,8 +97,9 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status',
-'links' => 'links'    ];
+        'sku' => 'sku',
+'active' => 'active',
+'last_modified' => 'lastModified'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -104,8 +107,9 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus',
-'links' => 'setLinks'    ];
+        'sku' => 'setSku',
+'active' => 'setActive',
+'last_modified' => 'setLastModified'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -113,8 +117,9 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus',
-'links' => 'getLinks'    ];
+        'sku' => 'getSku',
+'active' => 'getActive',
+'last_modified' => 'getLastModified'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -174,8 +179,9 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['links'] = isset($data['links']) ? $data['links'] : null;
+        $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
+        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
+        $this->container['last_modified'] = isset($data['last_modified']) ? $data['last_modified'] : null;
     }
 
     /**
@@ -203,49 +209,73 @@ class OnlineStatusListResponse implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets status
+     * Gets sku
      *
-     * @return \EzzeSiftuz\ProductsV1\Model\ActiveStatus[]
+     * @return string
      */
-    public function getStatus()
+    public function getSku()
     {
-        return $this->container['status'];
+        return $this->container['sku'];
     }
 
     /**
-     * Sets status
+     * Sets sku
      *
-     * @param \EzzeSiftuz\ProductsV1\Model\ActiveStatus[] $status status
+     * @param string $sku Partner-unique identifier for a product variation provided by the partner
      *
      * @return $this
      */
-    public function setStatus($status)
+    public function setSku($sku)
     {
-        $this->container['status'] = $status;
+        $this->container['sku'] = $sku;
 
         return $this;
     }
 
     /**
-     * Gets links
+     * Gets active
      *
-     * @return \EzzeSiftuz\ProductsV1\Model\Link[]
+     * @return bool
      */
-    public function getLinks()
+    public function getActive()
     {
-        return $this->container['links'];
+        return $this->container['active'];
     }
 
     /**
-     * Sets links
+     * Sets active
      *
-     * @param \EzzeSiftuz\ProductsV1\Model\Link[] $links a list of links that can be used for pagination (among others).
+     * @param bool $active The product variation is supposed to be active or not
      *
      * @return $this
      */
-    public function setLinks($links)
+    public function setActive($active)
     {
-        $this->container['links'] = $links;
+        $this->container['active'] = $active;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_modified
+     *
+     * @return string
+     */
+    public function getLastModified()
+    {
+        return $this->container['last_modified'];
+    }
+
+    /**
+     * Sets last_modified
+     *
+     * @param string $last_modified the timestamp (GMT date and time) of the last modification of the active status
+     *
+     * @return $this
+     */
+    public function setLastModified($last_modified)
+    {
+        $this->container['last_modified'] = $last_modified;
 
         return $this;
     }

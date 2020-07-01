@@ -4,14 +4,14 @@ All URIs are relative to */*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getOnlineStatus**](ProductOnlineStatusApi.md#getonlinestatus) | **GET** /v1/products/online-status | Read the online status of your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting online status values will be paginated. The default page length is 100 online status entries per response, also the page size limit. The links specified in the result can be used to page through the total result space.
-[**getVariationOnlineStatus**](ProductOnlineStatusApi.md#getvariationonlinestatus) | **GET** /v1/products/{sku}/online-status | Read the online status of a single product variation.
-[**updateOnlineStatus**](ProductOnlineStatusApi.md#updateonlinestatus) | **POST** /v1/products/online-status | Update the online status of your product variations and get a process-id to query results
+[**getOnlineStatus**](ProductOnlineStatusApi.md#getonlinestatus) | **GET** /v1/products/online-status | DEPRECATED - please use the corresponding active-status endpoint instead.
+[**getVariationOnlineStatus**](ProductOnlineStatusApi.md#getvariationonlinestatus) | **GET** /v1/products/{sku}/online-status | DEPRECATED - please use the corresponding active-status endpoint instead.
+[**updateOnlineStatus**](ProductOnlineStatusApi.md#updateonlinestatus) | **POST** /v1/products/online-status | DEPRECATED - please use the corresponding active-status endpoint instead.
 
 # **getOnlineStatus**
 > \EzzeSiftuz\ProductsV1\Model\OnlineStatusListResponse getOnlineStatus($product_name, $category, $brand, $page, $limit)
 
-Read the online status of your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting online status values will be paginated. The default page length is 100 online status entries per response, also the page size limit. The links specified in the result can be used to page through the total result space.
+DEPRECATED - please use the corresponding active-status endpoint instead.
 
 ### Example
 ```php
@@ -66,7 +66,7 @@ No authorization required
 # **getVariationOnlineStatus**
 > \EzzeSiftuz\ProductsV1\Model\OnlineStatus getVariationOnlineStatus($sku)
 
-Read the online status of a single product variation.
+DEPRECATED - please use the corresponding active-status endpoint instead.
 
 ### Example
 ```php
@@ -113,7 +113,7 @@ No authorization required
 # **updateOnlineStatus**
 > \EzzeSiftuz\ProductsV1\Model\ProductProcessProgress updateOnlineStatus($body, $x_request_timestamp)
 
-Update the online status of your product variations and get a process-id to query results
+DEPRECATED - please use the corresponding active-status endpoint instead.
 
 ### Example
 ```php

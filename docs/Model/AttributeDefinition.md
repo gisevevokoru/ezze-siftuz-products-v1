@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **relevance** | **string** | the relevance of the attribute. | [optional] 
 **description** | **string** | additional information for the attribute. | [optional] 
 **example_values** | **string[]** | example values for the attribute. | [optional] 
+**recommended_values** | **string[]** | use the listed values to get full navigation and filter features on otto.de. If no suitable value exists, then enter your own value. | [optional] 
 **reference** | **string** | reference to further documentation. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

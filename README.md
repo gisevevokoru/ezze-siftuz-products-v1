@@ -81,16 +81,21 @@ Class | Method | HTTP request | Description
 *BrandsApi* | [**getBrands**](docs/Api/BrandsApi.md#getbrands) | **GET** /v1/products/brands | Read the list of brands that are known on the Otto market place.
 *CategoriesApi* | [**getCategoryGroups**](docs/Api/CategoriesApi.md#getcategorygroups) | **GET** /v1/products/categories | Read the product categories and associated attributes of the OTTO market place. The total number of results could be limited by specifying query parameters. Generally the resulting product categories values will be paginated. The default page length is 100 product categories per response, the page size limit is 2000. The links specified in the result can be used to page through the total result space.
 *MarketplaceStatusApi* | [**getMarketPlaceStatus**](docs/Api/MarketplaceStatusApi.md#getmarketplacestatus) | **GET** /v1/products/{sku}/marketplace-status | Read the marketplace status for a single product variation.
-*MarketplaceStatusApi* | [**getMarketPlaceStatusList**](docs/Api/MarketplaceStatusApi.md#getmarketplacestatuslist) | **GET** /v1/products/marketplace-status | Read the marketplace status for your product variations. The total number of results could be limited by specifying query parameters. Generally the resultingmarketplace status will be paginated. The default page length is 100 product variations per response, also the page size limit. The links specified in the result can be used to page through the total result space.
-*ProductOnlineStatusApi* | [**getOnlineStatus**](docs/Api/ProductOnlineStatusApi.md#getonlinestatus) | **GET** /v1/products/online-status | Read the online status of your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting online status values will be paginated. The default page length is 100 online status entries per response, also the page size limit. The links specified in the result can be used to page through the total result space.
-*ProductOnlineStatusApi* | [**getVariationOnlineStatus**](docs/Api/ProductOnlineStatusApi.md#getvariationonlinestatus) | **GET** /v1/products/{sku}/online-status | Read the online status of a single product variation.
-*ProductOnlineStatusApi* | [**updateOnlineStatus**](docs/Api/ProductOnlineStatusApi.md#updateonlinestatus) | **POST** /v1/products/online-status | Update the online status of your product variations and get a process-id to query results
+*MarketplaceStatusApi* | [**getMarketPlaceStatusList**](docs/Api/MarketplaceStatusApi.md#getmarketplacestatuslist) | **GET** /v1/products/marketplace-status | Read the marketplace status for your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting marketplace status will be paginated. The default page length is 100 product variations per response, also the page size limit. The links specified in the result can be used to page through the total result space.
+*ProductActiveStatusApi* | [**getActiveStatus**](docs/Api/ProductActiveStatusApi.md#getactivestatus) | **GET** /v1/products/active-status | Read the active status of your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting active status values will be paginated. The default page length is 100 active status entries per response, also the page size limit. The links specified in the result can be used to page through the total result space. Replaces corresponding online-status endpoint which now is marked as deprecated.
+*ProductActiveStatusApi* | [**getVariationActiveStatus**](docs/Api/ProductActiveStatusApi.md#getvariationactivestatus) | **GET** /v1/products/{sku}/active-status | Read the active status of a single product variation. Replaces corresponding online-status endpoint which now is marked as deprecated.
+*ProductActiveStatusApi* | [**updateActiveStatus**](docs/Api/ProductActiveStatusApi.md#updateactivestatus) | **POST** /v1/products/active-status | Update the active status of your product variations and get a process-id to query results. Replaces corresponding online-status endpoint which now is marked as deprecated.
+*ProductOnlineStatusApi* | [**getOnlineStatus**](docs/Api/ProductOnlineStatusApi.md#getonlinestatus) | **GET** /v1/products/online-status | DEPRECATED - please use the corresponding active-status endpoint instead.
+*ProductOnlineStatusApi* | [**getVariationOnlineStatus**](docs/Api/ProductOnlineStatusApi.md#getvariationonlinestatus) | **GET** /v1/products/{sku}/online-status | DEPRECATED - please use the corresponding active-status endpoint instead.
+*ProductOnlineStatusApi* | [**updateOnlineStatus**](docs/Api/ProductOnlineStatusApi.md#updateonlinestatus) | **POST** /v1/products/online-status | DEPRECATED - please use the corresponding active-status endpoint instead.
 *ProductsApi* | [**createOrUpdateProductVariations**](docs/Api/ProductsApi.md#createorupdateproductvariations) | **POST** /v1/products | Create or update your product variations and get a process-id to query results. The limit for the number of product variations in one request is 500.
 *ProductsApi* | [**getPartnerProducts**](docs/Api/ProductsApi.md#getpartnerproducts) | **GET** /v1/products | Read your product variations. The total number of results could be limited by specifying query parameters. Generally the resulting product variations will be paginated. The default page length is 100 product variations per response, also the page size limit. The links specified in the result can be used to page through the total result space.
 *ProductsApi* | [**getProductVariation**](docs/Api/ProductsApi.md#getproductvariation) | **GET** /v1/products/{sku} | Read a single product variation.
 
 ## Documentation For Models
 
+ - [ActiveStatus](docs/Model/ActiveStatus.md)
+ - [ActiveStatusListRequest](docs/Model/ActiveStatusListRequest.md)
  - [Attribute](docs/Model/Attribute.md)
  - [AttributeDefinition](docs/Model/AttributeDefinition.md)
  - [Brand](docs/Model/Brand.md)
@@ -113,6 +118,7 @@ Class | Method | HTTP request | Description
  - [Pricing](docs/Model/Pricing.md)
  - [ProductDescription](docs/Model/ProductDescription.md)
  - [ProductProcessProgress](docs/Model/ProductProcessProgress.md)
+ - [ProductProcessResultLink](docs/Model/ProductProcessResultLink.md)
  - [ProductVariation](docs/Model/ProductVariation.md)
  - [ProductVariationApiResult](docs/Model/ProductVariationApiResult.md)
  - [Sale](docs/Model/Sale.md)
